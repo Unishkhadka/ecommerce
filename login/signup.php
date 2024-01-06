@@ -2,7 +2,7 @@
 $root = "C:/xampp/htdocs/ecommerce/";
 include $root."common/header.php";
 ?>
-<section class="bg-gray-100">
+<section class="h-dvh bg-gray-100">
     <div class="flex min-h-full flex-col justify-center px-6 pt-10 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 class="mt-2 text-2xl font-bold leading-9 tracking-tight text-gray-900">Create an account
