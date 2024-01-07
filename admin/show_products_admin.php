@@ -21,11 +21,9 @@
                             <a class='text-black text-decoration-none text-decoration-underline-hover' href='/ecommerce/product_details.php?id=$product_id'><h4 class='card-text'>$name</h4>
                             </a>
                             <div class='d-flex justify-content-between align-items-center'>
-                                <div class='btn-group'>
-                                    <button type='button' class='cart btn btn-sm btn-outline-primary'>Add to cart</button>
-                                </div>
-                                <small class='text-body-secondary'>9 mins</small>
-                            </div>
+            <div class='price text-success'><h5 class='mt-4'>$$price</h5></div>
+             <a href='#' class='btn btn-danger mt-3'>Edit <i class='fa-solid fa-pen'></i></a>
+          </div>
                         </div>
                     </div>
                </div>
