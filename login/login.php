@@ -1,28 +1,30 @@
-<?php 
+<?php
 $root = "C:/xampp/htdocs/ecommerce/";
-include $root."common/connection.php";
-include $root."common/header.php";
+include $root . "common/connection.php";
+include $root . "common/header.php";
 ?>
-<?php 
+<?php
 session_start();
-if(isset($_POST['login'])){
+if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $sql = "SELECT * FROM users WHERE `email`='$email'";
     $user = $con->query($sql);
 
-    if(mysqli_num_rows($user)>0){
-        while($row = $user->fetch_assoc()){
-            if(password_verify($password, $row['password'])){
-          $_SESSION['loggedin'] =true;
-        header("Location: /ecommerce/index.php");
-        }}}
-    else{
-        echo "<div class='container mt-4 alert alert-warning alert-dismissible fade show' role='alert'>
+    if (mysqli_num_rows($user) > 0) {
+        while ($row = $user->fetch_assoc()) {
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['loggedin'] = true;
+                header("Location: /ecommerce/index.php");
+            }
+        }
+    } else {
+        echo "<div class='container mt-4 alert alert-danger alert-dismissible fade show' role='alert'>
         <strong>Invalid credentials!!</strong>
         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>";
-    }}
+    }
+}
 ?>
 
 <div class="container mx-auto col-4 mt-5">
@@ -51,4 +53,4 @@ if(isset($_POST['login'])){
         </div>
     </form>
 </div>
-<?php include $root."/common/footer.php"; ?>
+<?php include $root . "/common/footer.php"; ?>
