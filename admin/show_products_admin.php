@@ -22,7 +22,7 @@
                             </a>
                             <div class='d-flex justify-content-between align-items-center'>
             <div class='price text-success'><h5 class='mt-4'>$$price</h5></div>
-             <a href='#' class='btn btn-danger mt-3'>Edit <i class='fa-solid fa-pen'></i></a>
+             <a href='/ecommerce/admin/edit_product.php?id=$product_id' class='btn btn-danger mt-3'>Edit <i class='fa-solid fa-pen'></i></a>
           </div>
                         </div>
                     </div>

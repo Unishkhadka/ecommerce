@@ -8,7 +8,7 @@ session_start();?>
     $password = $_POST['password'];
     $sql = "SELECT * FROM admins WHERE `email`='$email'";
     $user = $con->query($sql);
-
+ 
     if (mysqli_num_rows($user) > 0) {
         while ($row = $user->fetch_assoc()) {
             if (password_verify($password, $row['password'])) {

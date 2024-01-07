@@ -4,64 +4,53 @@ include $root."common/connection.php";
 include $root."common/header.php";
 ?>
 
-<section class="bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new product</h2>
+<div class="d-flex">
+<?php include "sidebar.php"; ?>
+<section class="vh-100" style="background-color: #1A1D20;">
+    <div class="container col-8 py-5 px-4 mx-auto max-w-2xl lg:py-8">
+        <h2 class="mb-4 text-xl font-bold text-white">Add new Product</h2>
         <form action="publish_product.php" method="post" enctype="multipart/form-data">
-            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                <div class="sm:col-span-2">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
-                        Name</label>
-                    <input type="text" name="name" id="name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-                        placeholder="Type product name" required="">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label text-white">Product Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Type product name" required>
                 </div>
-                <div class="w-full">
-                    <label for="brand"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand(optional)</label>
-                    <input type="text" name="brand" id="brand"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-                        placeholder="Product brand">
+                <div class="col-md-6">
+                    <label for="brand" class="form-label text-white">Brand (optional)</label>
+                    <input type="text" name="brand" id="brand" class="form-control" placeholder="Product brand">
                 </div>
-                <div class="w-full">
-                    <label for="price"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                    <input type="number" name="price" id="price"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-                        placeholder="$2999" required>
+                <div class="col-md-6">
+                    <label for="price" class="form-label text-white">Price</label>
+                    <input type="number" name="price" id="price" class="form-control" placeholder="$2999" required>
                 </div>
-                <div>
-                    <label for="category"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                    <select id="category" name="category"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
-                        <option>TV/Monitors</option>
-                        <option>PC</option>
-                        <option>Gaming/Console</option>
-                        <option>Phones</option>
+                <div class="col-md-6">
+                    <label for="category" class="form-label text-white">Category</label>
+                    <select id="category" name="category" class="form-select">
+                        <?php
+                        $sql = "SELECT * from categories";
+                        $categories = $con->query($sql);
+
+                        while($row=$categories->fetch_assoc()){
+                            $category= $row['category'];
+                        echo "<option>$category</option>";
+                        }
+                        ?>
                     </select>
                 </div>
-                <div class="w-full">
-
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="large_size">Upload Image</label>
-                    <input
-                        class="block w-full text-lg text-gray-900 border py-1.5 px-3 border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 h-11 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        id="large_size" name="image" type="file" enctype="multipart/form-data">
-
+                <div class="col-12">
+                    <label class="form-label text-white" for="image">Upload Image</label>
+                    <input type="file" class="form-control" id="image" name="image" enctype="multipart/form-data">
                 </div>
-                <div class="sm:col-span-2">
-                    <label for="description"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                    <textarea id="description" rows="8" name="description"
-                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-                        placeholder="Your description here"></textarea>
+                <div class="col-12">
+                    <label for="description" class="form-label text-white">Description</label>
+                    <textarea id="description" rows="4" name="description" class="form-control" placeholder="Your description here"></textarea>
+                </div>
+                <div class="col-12 text-end">
+                    <button type="submit" name="product" class="btn btn-primary">Add Product</button>
                 </div>
             </div>
-            <button type="submit" name="product"
-                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-900 hover:bg-indigo-400">
-                Add product
-            </button>
         </form>
     </div>
 </section>
+
 <?php include $root."common/footer.php" ?>
