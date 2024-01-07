@@ -21,7 +21,7 @@ include $root."common/nav.php";
 <?php
   include $root."show_products.php";
 ?>
-<?php // include $root."common/footer.php" ?>
+<?php include $root."common/footer.php" ?>
 <script>
 const cart = document.querySelector('.cart')
 cart.addEventListener('click', () => {

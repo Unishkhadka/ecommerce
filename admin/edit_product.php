@@ -24,7 +24,7 @@ if (mysqli_num_rows($product) > 0) {
     <section class="vh-100" style="background-color:  #1A1D20;">
         <div class="container col-8 py-5 px-4 mx-auto max-w-2xl lg:py-8">
             <h2 class="mb-4 text-center text-xl font-bold text-white">Update Product</h2>
-            <form action="publish_product.php" method="post" enctype="multipart/form-data">
+            <form action="update_product.php" method="post" enctype="multipart/form-data">
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label for="name" class="form-label text-white">Product Name</label>
@@ -54,7 +54,7 @@ if (mysqli_num_rows($product) > 0) {
                         <textarea id="description" rows="4" name="description" class="form-control" placeholder="Your description here"><?php echo $description; ?></textarea>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
-                        <a href="/ecommerce/admin/delete_product.php?id=<?php echo $product_id ?> name=" product" class="btn btn-danger">Delete Product</a>
+                        <a href="/ecommerce/admin/delete_product.php?id=<?php echo $product_id ?> class="btn btn-danger">Delete Product</a>
                         <button type="submit" name="product" class="btn btn-primary ms-3">Update Product</button>
                     </div>
                 </div>

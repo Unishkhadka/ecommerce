@@ -16,15 +16,14 @@
                     echo "
                 <div class='col'>
                     <div class='card shadow-sm'>
-                    <img src='/ecommerce/$image' class='img-fluid' alt='$name'>
+                    <img src='/ecommerce/$image' class='img-thumbnail object-fit-cover' style='height:220px; width: 100%;' alt='$name'>
                         <div class='card-body'>
-                            <a class='text-black text-decoration-none text-decoration-underline-hover' href='/ecommerce/product_details.php?id=$product_id'><h4 class='card-text'>$name</h4>
+                            <a class='text-black text-decoration-none text-decoration-underline-hover' href='/ecommerce/product_details.php?id=$product_id'><p class='card-text my-2'>$name</p>
                             </a>
                             <div class='d-flex justify-content-between align-items-center'>
                                 <div class='btn-group'>
                                     <button type='button' class='cart btn btn-sm btn-outline-primary'>Add to cart</button>
                                 </div>
-                                <small class='text-body-secondary'>9 mins</small>
                             </div>
                         </div>
                     </div>

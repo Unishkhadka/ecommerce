@@ -1,42 +1,52 @@
-<div class='album py-5 bg-body-tertiary'>
-    <div class='container'>
-        <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
-            <?php
-            $sql = "SELECT * from products";
-            $products = $con->query($sql);
-            if ($products->num_rows > 0) {
-                while ($row = $products->fetch_assoc()) {
-                    $product_id = $row['product_id'];
-                    $name = $row['product_name'];
-                    $category = $row['category'];
-                    $price = $row['price'];
-                    $description = $row['description'];
-                    $image = $row['image_url'];
-                    $brand = $row['brand'];
-                    echo "
-                <div class='col'>
-                    <div class='card shadow-sm'>
-                    <img src='/ecommerce/$image' class='img-fluid' alt='$name'>
-                        <div class='card-body'>
-                            <a class='text-black text-decoration-none text-decoration-underline-hover' href='/ecommerce/product_details.php?id=$product_id'><h4 class='card-text'>$name</h4>
-                            </a>
-                            <div class='d-flex justify-content-between align-items-center'>
-            <div class='price text-success'><h5 class='mt-4'>$$price</h5></div>
-             <a href='/ecommerce/admin/edit_product.php?id=$product_id' class='btn btn-danger mt-3'>Edit <i class='fa-solid fa-pen'></i></a>
-          </div>
-                        </div>
-                    </div>
-               </div>
-    ";
-                }
-            } else {
+  <div class='container' style="width: 100%;">
+      <?php
+        $sql = "SELECT * from products";
+        $products = $con->query($sql);
+        if ($products->num_rows > 0) {
+            echo "         
+    <table class='table table-bordered mt-4'>
+                <thead class=''>
+                  <tr>
+                    <th scope='col'>Name</th>
+                    <th scope='col'>Price</th>
+                    <th scope='col'>Category</th>
+                    <th scope='col'>Image</th>
+                    <th scope='col'>Action</th>
+                    
+                  </tr>
+                </thead>
+                ";
+            while ($row = $products->fetch_assoc()) {
+                $product_id = $row['product_id'];
+                $name = $row['product_name'];
+                $category = $row['category'];
+                $price = $row['price'];
+                $description = $row['description'];
+                $image = $row['image_url'];
+                $brand = $row['brand'];
                 echo "
+                    <tbody>
+                      <tr>
+                        <td>$name</td>
+                        <td>$price</td>
+                        <td>$category</td>
+                        <td><img src='/ecommerce/$image' class='img-thumbnail object-fit-cover' alt='$name' style='height: 45px; width: 65px'></td>
+                        <td>
+                        <a href='/ecommerce/admin/edit_product.php?id=$product_id'><button type='button' class='btn btn-sm btn-primary'>Update</button></a>
+                        <a href='/ecommerce/admin/delete_product.php?id=$product_id'><button type='button' class='btn btn-sm btn-danger'>Delete</button></a>
+                        </td>
+                      </tr>
+                      </tbody>  
+    ";
+            }
+            echo "
+                </table>";
+        } else {
+            echo "
         <div class='container'>
             <h1 class='text-3xl font-bold'>No products available <i class='fa-solid fa-circle-exclamation'></i></h1>
         </div>
         ";
-            }
-            ?>
-        </div>
-    </div>
-</div>
+        }
+        ?>
+  </div>
