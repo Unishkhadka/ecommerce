@@ -10,4 +10,4 @@
     <script src="https://kit.fontawesome.com/82df38ba1f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body class='bg-gray-900' style="font-family: 'Poppins', sans-serif;">
+<body style="font-family: 'Poppins', sans-serif;">

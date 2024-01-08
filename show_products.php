@@ -24,7 +24,10 @@
                             <div class='d-flex justify-between align-items-center'>
                             <h3 class='mb-0'>$$price</h3>
                                 <div class='btn-group ms-auto'>
-                                    <a href='?id=$product_id'><button type='button' class='cart btn btn-sm btn-outline-primary text-end'>Add to cart</button></a>
+                                <form action='' method='post'>
+                                <input type='hidden' name='id' value=$product_id>
+                                    <button type='submit' name='cart' class='cart btn btn-sm btn-outline-primary text-end'>Add to cart</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

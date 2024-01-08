@@ -1,9 +1,36 @@
 <?php
 $root = "C:/xampp/htdocs/ecommerce/";
 include $root . "common/connection.php";
-// include $root."common/authenticate.php";
 include $root . "common/header.php";
 include $root . "common/nav.php";
+?>
+<?php
+if (isset($_POST['cart'])) {
+    // Check if the user is logged in
+    if (isset($_SESSION['Uid']) && $_SESSION['Uid']) {
+        $id = $_POST['id'];
+        $Uid = $_SESSION['Uid'];
+        $sql = "INSERT INTO cart (product_id, quantity, user_id) VALUES ($id, 1, $Uid)";
+        $result = $con->query($sql);
+
+        if ($result) {
+            echo '<div class="container my-3 alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Product added to cart successfully!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        } else {
+            echo '<div class="container my-3 alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error adding product to cart!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+    } else {
+        echo '<div class="container my-3 alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Please login first!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+    }
+}
 ?>
 <section class="py-5 text-white text-center container-fluid" style="background-color:  #1A1D20;">
     <div class="row py-lg-5">
@@ -20,36 +47,5 @@ include $root . "common/nav.php";
 
 <?php
 include $root . "show_products.php";
-
-if (isset($_POST['cart'])) {
-    // Check if the user is logged in
-    if (isset($_SESSION['Uid']) && $_SESSION['Uid']) {
-        $id = $_GET['id']; 
-        $Uid = $_SESSION['Uid'];
-
-        // Perform the insertion into the cart table
-        $sql = "INSERT INTO cart (product_id, quantity, user_id) VALUES ($id, 1, $Uid)";
-        $result = $con->query($sql);
-
-        if ($result) {
-            echo '<div class="my-3 alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Product added to cart successfully!</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>';
-        } else {
-            echo '<div class="my-3 alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error adding product to cart!</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>';
-        }
-    } else {
-        echo "not logged in";
-        echo '<div class="my-3 alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Please login first!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>';
-    }
-}
-
 include $root . "common/footer.php";
 ?>
