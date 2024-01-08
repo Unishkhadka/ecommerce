@@ -54,7 +54,7 @@ if (mysqli_num_rows($product) > 0) {
                         <textarea id="description" rows="4" name="description" class="form-control" placeholder="Your description here"><?php echo $description; ?></textarea>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
-                        <a href="/ecommerce/admin/delete_product.php?id=<?php echo $product_id ?> class="btn btn-danger">Delete Product</a>
+                        <a href="/ecommerce/admin/delete_product.php?id=<?php echo $product_id ?>" class="btn btn-danger">Delete Product</a>
                         <button type="submit" name="product" class="btn btn-primary ms-3">Update Product</button>
                     </div>
                 </div>

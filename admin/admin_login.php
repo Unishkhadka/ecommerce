@@ -3,15 +3,16 @@ $root = "C:/xampp/htdocs/ecommerce/";
 include $root . "common/connection.php";
 include $root . "common/header.php";
 session_start(); ?>
-<?php if (isset($_POST['login'])) {
+<div class="container-fluid py-2 bg-dark">
+<?php 
+  if (isset($_POST['login'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
   $sql = "SELECT * FROM admins WHERE `email`='$email'";
   $user = $con->query($sql);
-
   if (mysqli_num_rows($user) > 0) {
     while ($row = $user->fetch_assoc()) {
-      if (password_verify($password, $row['password'])) {
+      if ($password == $row['password']) {
         $_SESSION['admin'] = true;
         header("Location: /ecommerce/admin/index.php");
       } else {
@@ -19,7 +20,6 @@ session_start(); ?>
         <div class='container mt-4 alert alert-danger alert-dismissible fade show' role='alert'>
         <strong>Wrong Password!!</strong>
         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-      </div>
       </div>";
       }
     }
@@ -28,12 +28,11 @@ session_start(); ?>
         <div class='container mt-4 alert alert-danger alert-dismissible fade show' role='alert'>
         <strong>Wrong Email!!</strong>
         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-      </div>
       </div>";
   }
 }
 ?>
-<div class="container-fluid bg-dark">
+
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <div class="card my-4">
