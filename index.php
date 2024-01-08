@@ -1,16 +1,15 @@
-<?php 
+<?php
 $root = "C:/xampp/htdocs/ecommerce/";
-include $root."common/connection.php";
+include $root . "common/connection.php";
 // include $root."common/authenticate.php";
-include $root."common/header.php";
-include $root."common/nav.php";
+include $root . "common/header.php";
+include $root . "common/nav.php";
 ?>
 <section class="py-5 text-white text-center container-fluid" style="background-color:  #1A1D20;">
     <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">SPENDIFY</h1>
-            <p class="lead text-white">Dive into Spendify's curated collection — a fusion of style and quality handpicked by our creators. Each piece tells a unique story of innovation and sophistication, offering a shopping experience beyond the ordinary. Explore excellence, shop Spendify. 
-            </p>
+        <div class="col-lg-6 col-md-8 mx-auto text-warning">
+            <h1 class="fw-semi-bold text-underline">SPENDIFY</h1>
+            <p class="lead text-white">Dive into Spendify's curated collection — a fusion of style and quality handpicked by our creators. Each piece tells a unique story of innovation and sophistication, offering a shopping experience beyond the ordinary. Explore excellence, shop Spendify.</p>
             <p>
                 <a href="#" class="btn btn-warning my-2">Shop Now <i class="fa-solid fa-bag-shopping"></i></a>
                 <a href="#" class="btn btn-secondary my-2">Special Offers %</a>
@@ -18,17 +17,39 @@ include $root."common/nav.php";
         </div>
     </div>
 </section>
+
 <?php
-  include $root."show_products.php";
+include $root . "show_products.php";
+
+if (isset($_POST['cart'])) {
+    // Check if the user is logged in
+    if (isset($_SESSION['Uid']) && $_SESSION['Uid']) {
+        $id = $_GET['id']; 
+        $Uid = $_SESSION['Uid'];
+
+        // Perform the insertion into the cart table
+        $sql = "INSERT INTO cart (product_id, quantity, user_id) VALUES ($id, 1, $Uid)";
+        $result = $con->query($sql);
+
+        if ($result) {
+            echo '<div class="my-3 alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Product added to cart successfully!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        } else {
+            echo '<div class="my-3 alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error adding product to cart!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+    } else {
+        echo "not logged in";
+        echo '<div class="my-3 alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Please login first!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+    }
+}
+
+include $root . "common/footer.php";
 ?>
-<?php include $root."common/footer.php" ?>
-<script>
-const cart = document.querySelector('.cart')
-cart.addEventListener('click', () => {
-    Swal.fire({
-        icon: "success",
-        title: "Added to cart",
-        // text: "Something went wrong!",
-    });
-})
-</script>
