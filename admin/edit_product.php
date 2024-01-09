@@ -4,6 +4,8 @@ include $root . "common/connection.php";
 include $root . "common/header.php";
 
 $product_id = $_GET['id'];
+$sql = "SELECT category from categories";
+$categories = $con->query($sql);
 $sql = "SELECT * FROM products WHERE `product_id` = $product_id";
 $product = $con->query($sql);
 
@@ -24,7 +26,7 @@ if (mysqli_num_rows($product) > 0) {
     <section class="vh-100" style="background-color:  #1A1D20;">
         <div class="container col-8 py-5 px-4 mx-auto max-w-2xl lg:py-8">
             <h2 class="mb-4 text-center text-xl font-bold text-white">Update Product</h2>
-            <form action="update_product.php" method="post" enctype="multipart/form-data">
+            <form action="/ecommerce/admin/pdate_product.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $product_id ?>" id="">
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -42,13 +44,17 @@ if (mysqli_num_rows($product) > 0) {
                     <div class="col-md-6">
                         <label for="category" class="form-label text-white">Category</label>
                         <select id="category" name="category" class="form-select">
-                            <option><?php echo $category; ?></option>
+                            <option selected><?php echo $category ?></option>
+                            <?php
+                            while ($category_list = $categories->fetch_assoc()) {
+                                echo "<option>" . $category_list['category'] . "</option>";
+                            } ?>
                             <!-- Add other category options here -->
                         </select>
                     </div>
                     <div class="col-12">
                         <label class="form-label text-white" for="image">Upload Image(optional)</label>
-                        <input type="file" class="form-control" id="image" name="image" enctype="multipart/form-data">
+                        <input type="file" class="form-control" id="image" name="image">
                     </div>
                     <div class="col-12">
                         <label for="description" class="form-label text-white">Description</label>

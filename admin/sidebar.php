@@ -39,7 +39,7 @@ function isCurrentPage($page) {
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white <?php echo isCurrentPage('costumers') ? 'active' : ''; ?>">
+        <a href="/ecommerce/admin/costumers.php" class="nav-link text-white <?php echo isCurrentPage('costumers') ? 'active' : ''; ?>">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
           Costumers
         </a>

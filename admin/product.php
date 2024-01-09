@@ -64,11 +64,11 @@ include $root . "common/header.php"; ?>
                     <textarea id="description" rows="4" name="description" class="form-control" placeholder="Your description here"></textarea>
                 </div>
             </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Add Product</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" name="product" class="btn btn-primary">Add Product</button>
+          </form>
       </div>
     </div>
   </div>

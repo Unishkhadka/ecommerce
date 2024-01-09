@@ -33,7 +33,7 @@
                         <td><img src='/ecommerce/$image' class='img-thumbnail object-fit-cover' alt='$name' style='height: 45px; width: 65px'></td>
                         <td>
                         <a href='/ecommerce/admin/edit_product.php?id=$product_id'><button type='button' class='btn btn-sm btn-primary'>Update</button></a>
-                        <a href='/ecommerce/admin/delete_product.php?id=$product_id'><button type='button' class='btn btn-sm btn- '>Delete</button></a>
+                        <a href='/ecommerce/admin/delete_product.php?id=$product_id'><button type='button' class='btn btn-sm btn-danger '>Delete</button></a>
                         </td>
                       </tr>
                       </tbody>  
