@@ -25,6 +25,7 @@ if (mysqli_num_rows($product) > 0) {
         <div class="container col-8 py-5 px-4 mx-auto max-w-2xl lg:py-8">
             <h2 class="mb-4 text-center text-xl font-bold text-white">Update Product</h2>
             <form action="update_product.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?php echo $product_id ?>" id="">
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label for="name" class="form-label text-white">Product Name</label>

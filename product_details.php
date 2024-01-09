@@ -100,7 +100,6 @@ $image = $row['image_url'];
 
 </section>
 <!-- Footer -->
-
 <?php
 include $root . "common/footer.php";
 ?>
