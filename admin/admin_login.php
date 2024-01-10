@@ -13,7 +13,7 @@ session_start(); ?>
   if (mysqli_num_rows($user) > 0) {
     while ($row = $user->fetch_assoc()) {
       if ($password == $row['password']) {
-        $_SESSION['admin'] = true;
+          $_SESSION['admin'] = $row['admin_id'];
         header("Location: /ecommerce/admin/index.php");
       } else {
         echo "

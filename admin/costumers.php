@@ -1,6 +1,7 @@
 <?php
 $root = "C:/xampp/htdocs/ecommerce/";
 include $root . "common/connection.php";
+include $root . "admin/admin_authenticate.php";
 include $root . "common/header.php";
 ?>
 <div class="d-flex">
@@ -18,7 +19,7 @@ include $root . "common/header.php";
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
-          <th scope="col">Action</th>
+          <th class="text-center" scope="col">Action</th>
         </tr>
     </thead>
     <tbody class='table-group-divider'>
@@ -35,7 +36,12 @@ while ($row = $result->fetch_assoc()) {
       <th scope='row'>$name</th>
       <td>$email</td>
       <td>$phone</td>
-      <td>@mdo</td>
+      <td>
+      <div class='text-center'>
+      <a class='btn btn-primary'>Edit <i class='fa-solid fa-gear'></i></a>
+      <a class='btn btn-danger ms-3'>Ban <i class='fa-solid fa-ban'></i></a>
+      </div>
+      </td>
     </tr>
   ";
 

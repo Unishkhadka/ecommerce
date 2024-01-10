@@ -30,6 +30,6 @@ if (isset($_POST['product'])) {
     // Close statement
     $stmt->close();
 
-    header("Location: /ecommerce/index.php");
+    header("Location: /ecommerce/admin/product.php");
 }
 ?>

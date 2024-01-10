@@ -4,6 +4,7 @@ include $root . "common/connection.php";
 include $root . "common/header.php";
 ?>
 <?php
+session_start();
 if(isset($_POST['login'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -13,7 +14,6 @@ if(isset($_POST['login'])){
     if(mysqli_num_rows($user)>0){
         while($row=$user->fetch_assoc()){
             if(password_verify($password, $row['password'])){
-                session_start();
                 $_SESSION['Uid'] = $row['user_id'];
                 header("Location: /ecommerce/index.php");
             }

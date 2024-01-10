@@ -1,7 +1,9 @@
 <?php
 $root = "C:/xampp/htdocs/ecommerce/";
 include $root . "common/connection.php";
-include $root . "common/header.php"; ?>
+include $root . "admin/admin_authenticate.php";
+include $root . "common/header.php";
+ ?>
 
 <div class="d-flex">
     <?php

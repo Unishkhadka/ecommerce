@@ -5,7 +5,7 @@
     if ($products->num_rows > 0) {
       echo "         
     <table class='table table-bordered mt-4'>
-                <thead class=''>
+                <thead class='table-dark'>
                   <tr>
                     <th scope='col'>Name</th>
                     <th scope='col'>Price</th>
