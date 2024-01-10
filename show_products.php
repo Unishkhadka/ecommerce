@@ -18,8 +18,11 @@
                 <div class='col'>
                     <div class='card shadow-sm'>
                     <img src='/ecommerce/$image' class='img-thumbnail object-fit-cover' style='height:220px; width: 100%;' alt='$name'>
-                        <div class='card-body'>
-                            <a class='text-black text-decoration-none text-decoration-underline-hover' href='/ecommerce/product_details.php?id=$product_id'><p class='card-text my-2'>$name</p>
+                    <div class='card-body'>
+                    <a href='/ecommerce/product_details.php?id=$product_id'>
+                    <div class='text-truncate text-decoration-underline text-dark my-2'>
+                            $name
+                            </div>
                             </a>
                             <div class='d-flex justify-between align-items-center'>
                             <h3 class='mb-0'>$$price</h3>

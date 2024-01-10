@@ -28,7 +28,7 @@
                     <tbody>
                       <tr>
                         <td>$name</td>
-                        <td>$price</td>
+                        <td>$$price</td>
                         <td>$category</td>
                         <td><img src='/ecommerce/$image' class='img-thumbnail object-fit-cover' alt='$name' style='height: 45px; width: 65px'></td>
                         <td>

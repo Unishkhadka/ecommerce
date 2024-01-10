@@ -5,7 +5,7 @@ include $root . "common/connection.php";
 include $root . "common/header.php";
 include $root . "common/nav.php";
 ?>
-<section class="h-100" style="background-color: #eee;">
+<section class="min-vh-100" style="background-color: #eee;">
     <div class="container-fluid h-100 py-5">
         <div class="row d-flex justify-content-center align-items-start h-100">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -33,6 +33,7 @@ include $root . "common/nav.php";
                         $product_details = $product->fetch_assoc();
                         $name = $product_details['product_name'];
                         $price = $product_details['price'];
+                        $total = $price*$quantity;
                         $subtotal = $subtotal + ($quantity * $price);
                         $image = $product_details['image_url'];
                         echo "
@@ -52,10 +53,10 @@ include $root . "common/nav.php";
                         class='form-control form-control-sm px-3' />
                     </div>
                     <div class='col-md-3 col-lg-2 col-xl-2 offset-lg-1'>
-                      <h5 class='mb-0'>$$price</h5>
+                      <h5 class='mb-0'>$$total</h5>
                     </div>
                     <div class='col-md-1 col-lg-1 col-xl-1 text-end'>
-                      <a href='/ecommerce/cart_remove.php' class='text-danger'><i class='fas fa-trash fa-lg'></i></a>
+                      <a href='/ecommerce/cart_remove.php?id=$cart_id' class='text-danger'><i class='fas fa-trash fa-lg'></i></a>
                     </div>
                   </div>
                 </div>
@@ -66,7 +67,7 @@ include $root . "common/nav.php";
                     <div class="d-flex justify-content-between">
                         <a href="/ecommerce/" class="btn btn-link icon-link-hover text-decoration-none text-dark"><i
                                 class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
-                        <a href="/ecommerce/checkout.php"><button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+                        <a href="/ecommerce/checkout.php"><button type="button" class="btn btn-warning">Proceed to Pay</button>
                         </a>
                     </div>
                 </div>
