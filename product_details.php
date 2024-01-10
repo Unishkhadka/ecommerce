@@ -5,6 +5,50 @@ include $root . "common/header.php";
 include $root . "common/nav.php";
 ?>
 <?php
+if (isset($_POST['cart'])) {
+    // Check if the user is logged in
+    if (isset($_SESSION['Uid']) && $_SESSION['Uid']) {
+        $id = $_POST['id'];
+        $Uid = $_SESSION['Uid'];
+        $sql = "SELECT * from cart where product_id = $id";
+        $check = $con->query($sql);
+        $row = $check->fetch_assoc();
+        if($check and mysqli_num_rows($check)>0){
+            $quantity = $row['quantity']+1;
+            $sql = "UPDATE  cart SET quantity = $quantity where product_id=$id AND user_id = $Uid";
+            $update = $con->query($sql);
+            if($update){
+                echo '<div class="container my-2 alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Product added to cart successfully!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+            }
+        }
+        else{
+        $sql = "INSERT INTO cart (product_id, quantity, user_id) VALUES ($id, 1, $Uid)";
+        $result = $con->query($sql);
+
+        if ($result) {
+            echo '<div class="container my-2 alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Product added to cart successfully!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        } else {
+            echo '<div class="container my-3 alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error adding product to cart!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }}
+    } else {
+        echo '
+        <div class="container absolute my-3 alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Please login first!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+    }
+}
+?>
+<?php
 $id = $_GET['id'];
 $sql = "SELECT * from products where product_id = $id";
 $product = $con->query($sql);
@@ -16,7 +60,7 @@ $category = $row['category'];
 $image = $row['image_url'];
 ?>
 <!-- content -->
-<section class="py-5">
+<section class="min-vh-100 pt-5" style="background: #f2f2f2";>
   <div class="container">
     <div class="row gx-5">
       <aside class="col-lg-6">
@@ -55,7 +99,7 @@ $image = $row['image_url'];
           <?php echo $description?>
           </p>
 
-          <div class="row">
+          <!-- <div class="row">
             <dt class="col-3">Type:</dt>
             <dd class="col-9">Regular</dd>
 
@@ -67,39 +111,27 @@ $image = $row['image_url'];
 
             <dt class="col-3">Brand</dt>
             <dd class="col-9">Reebook</dd>
-          </div>
+          </div> -->
 
           <hr />
 
           <div class="row mb-4">
             <!-- col.// -->
+            <form>
             <div class="col-md-4 col-6 mb-3">
               <label class="mb-2 d-block">Quantity</label>
-              <div class="input-group mb-3" style="width: 170px;">
-                <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <input type="text" class="form-control text-center border border-secondary" placeholder="1" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                  <i class="fas fa-plus"></i>
-                </button>
+                <input type="number" min="1" class="form-control text-center border border-secondary" placeholder="1" aria-label="Example text with button addon" aria-describedby="button-addon1" />
               </div>
             </div>
+            <button type="submit" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
           </div>
-          <a href="#" class="btn btn-warning shadow-0"> Buy now </a>
-          <a href="#" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
-          <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a>
+</form>
         </div>
       </main>
     </div>
   </div>
 </section>
 <!-- content -->
-
-<section class="bg-light border-top py-4">
-
-</section>
-<!-- Footer -->
 <?php
 include $root . "common/footer.php";
 ?>

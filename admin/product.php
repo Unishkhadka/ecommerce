@@ -27,7 +27,7 @@ include $root . "common/header.php"; ?>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="publish_product.php" method="post" enctype="multipart/form-data">
+      <form action="/ecommerce/admin/publish_product.php" method="post" enctype="multipart/form-data">
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="name" class="form-label text-white">Product Name</label>
@@ -57,11 +57,11 @@ include $root . "common/header.php"; ?>
                 </div>
                 <div class="col-12">
                     <label class="form-label text-white" for="image">Upload Image</label>
-                    <input type="file" class="form-control" id="image" name="image" enctype="multipart/form-data">
+                    <input type="file" class="form-control" id="image" name="image" required>
                 </div>
                 <div class="col-12">
                     <label for="description" class="form-label text-white">Description</label>
-                    <textarea id="description" rows="4" name="description" class="form-control" placeholder="Your description here"></textarea>
+                    <textarea id="description" rows="4" name="description" class="form-control" placeholder="Your description here" required></textarea>
                 </div>
             </div>
           </div>

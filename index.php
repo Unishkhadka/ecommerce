@@ -41,7 +41,8 @@ if (isset($_POST['cart'])) {
                   </div>';
         }}
     } else {
-        echo '<div class="container absolute my-3 alert alert-warning alert-dismissible fade show" role="alert">
+        echo '
+        <div class="container absolute my-3 alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Please login first!</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
@@ -54,7 +55,7 @@ if (isset($_POST['cart'])) {
             <h1 class="fw-semi-bold text-underline">SPENDIFY</h1>
             <p class="lead text-white">Dive into Spendify's curated collection — a fusion of style and quality handpicked by our creators. Each piece tells a unique story of innovation and sophistication, offering a shopping experience beyond the ordinary. Explore excellence, shop Spendify.</p>
             <p>
-                <a href="#" class="btn btn-warning my-2">Shop Now <i class="fa-solid fa-bag-shopping"></i></a>
+                <a href="#items" class="btn btn-warning my-2">Shop Now <i class="fa-solid fa-bag-shopping"></i></a>
                 <a href="#" class="btn btn-secondary my-2">Special Offers %</a>
             </p>
         </div>
