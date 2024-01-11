@@ -8,10 +8,10 @@ include $root . "common/header.php";
     <?php
     $products = "SELECT * FROM products";
     $users = "SELECT * FROM users";
-    $orders = "SELECT * FROM orders";
+    $orders = "SELECT * FROM order_set where `status` = 'pending' ";
     $n_products = mysqli_num_rows($con->query($products));
     $n_users = mysqli_num_rows($con->query($users));
-    // $n_orders = mysqli_num_rows($con->query($orders));
+    $n_orders = mysqli_num_rows($con->query($orders));
 
     include "sidebar.php";
     ?>
@@ -40,7 +40,7 @@ include $root . "common/header.php";
                 <div class="card bg-warning text-dark mb-4">
                     <div class="card-body text-center">
                         <h5 class="card-title">Orders</h5>
-                        <p class="card-text">0<?php //echo $n_orders; ?></p>
+                        <p class="card-text"><?php echo $n_orders; ?></p>
                     </div>
                 </div>
             </div>

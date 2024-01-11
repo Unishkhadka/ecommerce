@@ -12,7 +12,7 @@ function isCurrentPage($page) {
     return strpos($current_url, $page) !== false;
 }
 ?>
-
+<section class="d-none d-lg-block d-xl-non">
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; min-height: 100vh;">
     <a href="/ecommerce/admin/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
@@ -27,7 +27,7 @@ function isCurrentPage($page) {
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white <?php echo isCurrentPage('orders') ? 'active' : ''; ?>">
+        <a href="/ecommerce/admin/orders.php" class="nav-link text-white <?php echo isCurrentPage('orders') ? 'active' : ''; ?>">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
           Orders
         </a>
@@ -60,4 +60,5 @@ function isCurrentPage($page) {
       </ul>
     </div>
 </div>
+</section>
 <?php include $root."common/footer.php" ?>

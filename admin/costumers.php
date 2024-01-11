@@ -9,7 +9,7 @@ include $root . "common/header.php";
     ?>
     <div class='w-100'>
         <div class='bg-dark'>
-            <h1 class='p-2 text-white'>Products</h1>
+            <h1 class='p-2 text-white'>Costumers</h1>
         </div>
         <div class="container py-3 px-3">
 <table class="table table-bordered">

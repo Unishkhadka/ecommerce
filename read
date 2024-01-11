@@ -1,7 +1,0 @@
-check if billing_id exist
-if exist update it
-if !exist create one
-fetch billing_id
-create order_set
-fetch recent set_id
-create order
