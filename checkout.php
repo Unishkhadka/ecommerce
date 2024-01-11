@@ -4,41 +4,20 @@ include $root . "common/connection.php";
 // include $root."common/authenticate.php";
 include $root . "common/header.php";
 include $root . "common/nav.php";
-?>
-<?php
-if (isset($_POST['payment'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $postal = $_POST['postal'];
-
-    $sql = "INSERT into `billing_details` (receiver, email, phone, address, postal) VALUES ('$name', '$email', '$phone', '$address', '$postal')";
-    $insert = $con->query($sql);
-
-    if ($insert) {
-        header("Location: /ecommerce/order.php");
-    } else {
-        echo '<div class="container my-2 alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Failed to insert data</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>';;
-    }
-}
-?>
-<?php
 $Uid = $_SESSION['Uid'];
+?>
+
+<?php
+$order = "SELECT * from cart where user_id = $Uid";
+$order = $con->query($order);
+$num_items = mysqli_num_rows($order);
 $sql = $con->query("SELECT * from users where user_id = $Uid");
 $user = $sql->fetch_assoc();
 $username = $user['fullname'];
 $email = $user['email'];
 $phone = $user['phone'];
-$sql = "SELECT * from cart where user_id = $Uid";
-$cart = $con->query($sql);
-$num_items = mysqli_num_rows($cart);
 $subtotal = 0;
-while ($row = $cart->fetch_assoc()) {
-    $cart_id = $row['cart_id'];
+while ($row = $order->fetch_assoc()) {
     $quantity = $row['quantity'];
     $pid = $row['product_id'];
     $sql = "SELECT * from products where product_id=$pid";
@@ -61,7 +40,7 @@ while ($row = $cart->fetch_assoc()) {
                                 <div>
                                     <h3 class="mb-1">Billing Info</h3>
                                     <div class="mb-3">
-                                        <form action="" method="post">
+                                        <form action="/ecommerce/order.php" method="post">
                                             <div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
@@ -88,8 +67,7 @@ while ($row = $cart->fetch_assoc()) {
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-address">Address</label>
-                                                            <input class="form-control" id="billing-address" 
-                                                            name="address" placeholder="Enter full address" required>
+                                                            <input class="form-control" id="billing-address" name="address" placeholder="Enter full address" required>
                                                         </div>
                                                     </div>
                                                 </div>

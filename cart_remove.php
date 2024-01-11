@@ -1,6 +1,6 @@
 <?php
 $root = "C:/xampp/htdocs/ecommerce/";
-include $root."common/connection.php";
+include $root."common/authenticate.php";
 
 if (isset($_GET['id'])) {
     $cart_id = $_GET['id'];

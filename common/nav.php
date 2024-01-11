@@ -6,7 +6,6 @@
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 px-4">
                 <?php
-                session_start();
                 if (isset($_SESSION['Uid']) && $_SESSION['Uid']) {
                     $Uid = $_SESSION['Uid'];
                     $sql = $con->query("SELECT fullname from users where user_id = $Uid");

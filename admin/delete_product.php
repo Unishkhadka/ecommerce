@@ -1,6 +1,5 @@
 <?php
 $root = "C:/xampp/htdocs/ecommerce/";
-include $root . "common/connection.php";
 
 if (isset($_GET['id'])) {
     $product_id = $_GET['id'];

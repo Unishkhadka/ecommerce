@@ -6,12 +6,12 @@ include $root . "common/nav.php";
 ?>
 <section class="py-5 text-white text-center container-fluid" style="background-color:  #1A1D20;">
     <?php
-    if(isset($_POST['cart'])){ 
+    if (isset($_POST['cart'])) {
         // Check if the user is logged in
-        if (isset($_SESSION['Uid']) && $_SESSION['Uid'] ){
+        if (isset($_SESSION['Uid']) && $_SESSION['Uid']) {
             $id = $_POST['id'];
             $Uid = $_SESSION['Uid'];
-            $sql = "SELECT * from cart where product_id = $id";
+            $sql = "SELECT * from cart where product_id = $id and user_id = $Uid";
             $check = $con->query($sql);
             $row = $check->fetch_assoc();
             if ($check and (mysqli_num_rows($check) > 0)) {
@@ -34,12 +34,13 @@ include $root . "common/nav.php";
                   </div>';
             }
         } else {
-        echo '
+            echo '
         <div class="container absolute my-3 alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Please login first!</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>';
-    }}
+        }
+    }
     ?>
 
     <div class="row py-lg-5">

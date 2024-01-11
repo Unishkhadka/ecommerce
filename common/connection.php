@@ -9,4 +9,6 @@
     if(!$con){
         echo "Connection error.";
     }
+    session_start();
+
 ?>

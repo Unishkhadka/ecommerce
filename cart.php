@@ -1,7 +1,6 @@
 <?php
 $root = "C:/xampp/htdocs/ecommerce/";
-include $root . "common/connection.php";
-// include $root."common/authenticate.php";
+include $root."common/authenticate.php";
 include $root . "common/header.php";
 include $root . "common/nav.php";
 ?>
@@ -49,7 +48,7 @@ include $root . "common/nav.php";
                       <p class='lead fw-normal mb-2'>$name</p>
                     </div>
                     <div class='col-md-3 col-lg-3 col-xl-2 d-flex'>
-                      <input id='form1' min='0' name='quantity' value='$quantity' type='number'
+                      <input id='form1' min='1' name='quantity' value='$quantity' type='number'
                         class='form-control form-control-sm px-3' />
                     </div>
                     <div class='col-md-3 col-lg-2 col-xl-2 offset-lg-1'>
@@ -67,7 +66,7 @@ include $root . "common/nav.php";
                     <div class="d-flex justify-content-between">
                         <a href="/ecommerce/" class="btn btn-link icon-link-hover text-decoration-none text-dark"><i
                                 class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
-                        <a href="/ecommerce/checkout.php?"><button type="button" class="btn btn-warning">Proceed to Pay</button>
+                        <a href="/ecommerce/checkout.php"><button type="button" class="btn btn-warning">Proceed to Pay</button>
                         </a>
                     </div>
                 </div>
@@ -84,7 +83,7 @@ include $root . "common/nav.php";
                                         <tbody>
                                             <tr>
                                                 <td>Sub Total :</td>
-                                                <td class="text-end"><?php echo "$subtotal"; ?></td>
+                                                <td class="text-end"><?php echo "$$subtotal"; ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Discount : </td>

@@ -1,8 +1,7 @@
 <?php
 $root = "C:/xampp/htdocs/ecommerce/";
 include $root . "common/connection.php";
-include $root . "common/header.php";
-session_start(); ?>
+include $root . "common/header.php"; ?>
 <div class="container-fluid py-2 bg-dark">
 <?php 
   if (isset($_POST['login'])) {
