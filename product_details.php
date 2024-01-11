@@ -26,7 +26,7 @@ if (isset($_POST['cart'])) {
                   </div>';
       }
     } else {
-      $sql = "INSERT INTO cart (product_id, quantity, user_id) VALUES ($id, 1, $Uid)";
+      $sql = "INSERT INTO cart (product_id, quantity, user_id) VALUES ($id, $quantity, $Uid)";
       $result = $con->query($sql);
 
       if ($result) {

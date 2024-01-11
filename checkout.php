@@ -6,6 +6,27 @@ include $root . "common/header.php";
 include $root . "common/nav.php";
 ?>
 <?php
+if (isset($_POST['payment'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $postal = $_POST['postal'];
+
+    $sql = "INSERT into `billing_details` (receiver, email, phone, address, postal) VALUES ('$name', '$email', '$phone', '$address', '$postal')";
+    $insert = $con->query($sql);
+
+    if ($insert) {
+        header("Location: /ecommerce/order.php");
+    } else {
+        echo '<div class="container my-2 alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Failed to insert data</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';;
+    }
+}
+?>
+<?php
 $Uid = $_SESSION['Uid'];
 $sql = $con->query("SELECT * from users where user_id = $Uid");
 $user = $sql->fetch_assoc();
@@ -40,7 +61,7 @@ while ($row = $cart->fetch_assoc()) {
                                 <div>
                                     <h3 class="mb-1">Billing Info</h3>
                                     <div class="mb-3">
-                                        <form action="/ecommerce/admin/orders.php" method="post">
+                                        <form action="" method="post">
                                             <div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
@@ -68,7 +89,7 @@ while ($row = $cart->fetch_assoc()) {
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-address">Address</label>
                                                             <input class="form-control" id="billing-address" 
-                                                            name="address" placeholder="Enter full address">
+                                                            name="address" placeholder="Enter full address" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,7 +98,7 @@ while ($row = $cart->fetch_assoc()) {
                                                         <div class="mb-0">
                                                             <label class="form-label" for="zip-code">Zip / Postal
                                                                 code</label>
-                                                            <input type="text" name="postal" class="form-control" id="zip-code" placeholder="Enter Postal code">
+                                                            <input type="text" name="postal" class="form-control" id="zip-code" placeholder="Enter Postal code" required>
                                                         </div>
                                                     </div>
                                                 </div>

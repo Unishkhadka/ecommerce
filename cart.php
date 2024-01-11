@@ -67,7 +67,7 @@ include $root . "common/nav.php";
                     <div class="d-flex justify-content-between">
                         <a href="/ecommerce/" class="btn btn-link icon-link-hover text-decoration-none text-dark"><i
                                 class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
-                        <a href="/ecommerce/checkout.php"><button type="button" class="btn btn-warning">Proceed to Pay</button>
+                        <a href="/ecommerce/checkout.php?"><button type="button" class="btn btn-warning">Proceed to Pay</button>
                         </a>
                     </div>
                 </div>
