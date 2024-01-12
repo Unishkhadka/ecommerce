@@ -3,12 +3,12 @@ $root = "C:/xampp/htdocs/ecommerce/";
 include $root . "admin/admin_authenticate.php";
 
 if (isset($_POST['save'])) {
-    $sql = "SELECT set_id from order_set";
+    $set_id = $_POST['set_id'];
+    $sql = "SELECT `status` from order_set";
     $result = $con->query($sql);
     $row = $result->fetch_assoc();
-    $set_id = $row['set_id'];
     $status = $_POST['status'];
-    $sql = "UPDATE order_set SET `status` = '$status' WHERE set_id=$set_id";
+    $sql = "UPDATE order_set SET `status` = '$status' WHERE set_id = $set_id";
     $update = $con->query($sql);
     if ($update) {
         echo 'Updated details';

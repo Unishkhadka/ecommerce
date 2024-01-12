@@ -4,33 +4,33 @@ include $root . "admin/admin_authenticate.php";
 include $root . "common/header.php";
 ?>
 <div class="d-flex">
-    <?php
-    include "sidebar.php";
-    ?>
-    <div class='w-100'>
-        <div class='bg-dark'>
-            <h1 class='p-2 text-white'>Costumers</h1>
-        </div>
-        <div class="container py-3 px-3">
-<table class="table table-bordered">
-  <thead class="table-dark">
-      <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone</th>
-          <th class="text-center" scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody class='table-group-divider'>
-<?php
-$sql = "SELECT * from users";
-$result = $con->query($sql);
-while ($row = $result->fetch_assoc()) {
-    $name = $row['fullname'];
-    $email = $row['email'];
-    $phone = $row['phone'];
+  <?php
+  include "sidebar.php";
+  ?>
+  <div class='w-100'>
+    <div class='bg-dark'>
+      <h1 class='p-2 text-white'>Costumers</h1>
+    </div>
+    <div class="container py-3 px-3">
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th class="text-center" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class='table-group-divider'>
+          <?php
+          $sql = "SELECT * from users";
+          $result = $con->query($sql);
+          while ($row = $result->fetch_assoc()) {
+            $name = $row['fullname'];
+            $email = $row['email'];
+            $phone = $row['phone'];
 
-    echo "  
+            echo "  
     <tr>
       <th scope='row'>$name</th>
       <td>$email</td>
@@ -43,10 +43,10 @@ while ($row = $result->fetch_assoc()) {
       </td>
     </tr>
   ";
-
-}
-?>
-</tbody>
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-</div>
-</table>

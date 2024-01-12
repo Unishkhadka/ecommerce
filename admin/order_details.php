@@ -3,6 +3,12 @@ $root = "C:/xampp/htdocs/ecommerce/";
 include $root . "admin/admin_authenticate.php";
 include $root . "common/header.php";
 $set_id = $_GET['set_id'];
+$sql = "SELECT * from order_set where set_id = $set_id";
+$result = $con->query($sql);
+$row = $result->fetch_assoc();
+$status = $row['status'];
+$date = $row['ordered_at'];
+$method = $row['method'];
 ?>
 <div class="d-flex">
     <?php
@@ -15,6 +21,7 @@ $set_id = $_GET['set_id'];
             <h5>Order:
                 <?php echo $set_id ?>
             </h5>
+            <h5>Ordered at: <?php echo $date ?></h5>
         </div>
         <!-- Main content -->
         <div class="row">
@@ -98,6 +105,21 @@ $set_id = $_GET['set_id'];
                 </div>
             </div>
         </div>
+        <form action="/ecommerce/admin/order_update.php" method="post" class="d-flex justify-content-between">
+    <input type="hidden" name="set_id" value="<?php echo $set_id ?>">
+    <div class="d-flex align-items-center">
+        <strong>Status: </strong>
+        <select class='form-select' name='status' aria-label='Default select example'>
+            <option value='pending'<?php echo ($status == 'pending') ? ' selected' : ''; ?>>pending</option>
+            <option value='confirmed'<?php echo ($status == 'confirmed') ? ' selected' : ''; ?>>confirmed</option>
+            <option value='delivered'<?php echo ($status == 'delivered') ? ' selected' : ''; ?>>delivered</option>
+        </select>
+    </div>
+    <div class="text-end mx-2">
+        <button type="submit" name="save" class="btn btn-success">Save Changes</button>
+    </div>
+</form>
+
     </div>
     <div class="col-lg-4">
         <!-- Customer Notes -->
@@ -105,7 +127,7 @@ $set_id = $_GET['set_id'];
             <div class="card-body">
                 <h5>Payment Method</h5>
                 <hr>
-                <p>Visa -1234 <br>
+                <p><?php echo $method ?> <br>
                     Total: $
                     <?php echo $total ?>
             </div>
@@ -149,5 +171,3 @@ $set_id = $_GET['set_id'];
         </div>
     </div>
 </div>
-</div>
-<?php include $root . "common/footer.php"; ?>

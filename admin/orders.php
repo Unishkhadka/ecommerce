@@ -12,56 +12,57 @@ include $root . "common/header.php";
         <div class='table-responsive mx-2'>
             <table class='table table-bordered'>
                 <thead class="table-dark">
-                    <tr>
-                        <th>Order Id</th>
-                        <th>Receiver</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                        <th>Order Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody class='table-body table-group-divider'>
-
-                    <?php
-                    $sql = "SELECT * from order_set";
-                    $result = $con->query($sql);
-                    while ($row = $result->fetch_assoc()) {
-                        $set_id = $row['set_id'];
-                        $billing_id = $row['billing_id'];
-                        $user_id = $row['user_id'];
-                        $status = $row['status'];
-                        $ordered_at = $row['ordered_at'];
-                        $sql = "SELECT * from billing_details where billing_id = $billing_id";
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Receiver</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Order Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class='table-body table-group-divider'>
+                        <?php
+                        $sql = "SELECT * from order_set order by set_id desc";
                         $result = $con->query($sql);
-                        $row = $result->fetch_assoc();
-                        $receiver = $row["receiver"];
-                        echo "
-                        <tr class='cell-1'>
+                        while ($row_set = $result->fetch_assoc()) {
+                            $total = 0;
+                            $set_id = $row_set['set_id'];
+                            $billing_id = $row_set['billing_id'];
+                            $user_id = $row_set['user_id'];
+                            $status = $row_set['status'];
+                            $ordered_at = $row_set['ordered_at'];
+                            $sql_billing = "SELECT * from billing_details where billing_id = $billing_id";
+                            $result_billing = $con->query($sql_billing);
+                            $row_billing = $result_billing->fetch_assoc();
+                            $receiver = $row_billing["receiver"];
+                            $sql_order_info = "SELECT * from order_info where set_id = $set_id";
+                            $result_order_info = $con->query($sql_order_info);
+                            while ($row_order_info = $result_order_info->fetch_assoc()) {
+                                $quantity = $row_order_info['quantity'];
+                                $product_id = $row_order_info['product_id'];
+                                $sql_product = $con->query("SELECT * from products where product_id = $product_id");
+                                $product = $sql_product->fetch_assoc();
+                                $product_name = $product["product_name"];
+                                $price = $product["price"];
+                                $total = $total + ($price * $quantity);
+                            }
+                            echo "
+                            <tr class='cell-1'>
                             <td>$set_id</td>
                             <td>$receiver</td>
-                            <form action='/ecommerce/admin/order_update.php' method='post'>
-                                <td>
-                                    <select class='form-select' name='status' aria-label='Default select example'>
-                                        <option value='pending'" . ($status == 'pending' ? ' selected' : '') . ">pending</option>
-                                        <option value='confirmed'" . ($status == 'confirmed' ? ' selected' : '') . ">confirmed</option>
-                                        <option value='delivered'" . ($status == 'delivered' ? ' selected' : '') . ">delivered</option>
-                                    </select>
-                                </td>
-                                <td>$2674.00</td>
-                                <td>$ordered_at</td>
-                                <td><a href='/ecommerce/admin/order_details.php?set_id=$set_id' class='btn btn-primary btn-sm'>Details <i class='fa-solid fa-circle-info'></i></button></td>
-                            </tr>
-                        ";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-        <div class="text-end mx-2">
-            <button type="submit" name="save" class="btn btn-success">Save Changes</button>
-            </form>
+                            <td>
+                            $status
+                                    </td>
+                                    <td>$$total</td>
+                                    <td>$ordered_at</td>
+                                    <td><a href='/ecommerce/admin/order_details.php?set_id=$set_id' class='btn btn-primary btn-sm'>Details <i class='fa-solid fa-circle-info'></i></button></td>
+                                </tr>
+                                ";
+                            }
+                        ?>
+                    </tbody>
+                </table>
         </div>
     </div>
 </div>
-<?php include $root . "common/footer.php"; ?>

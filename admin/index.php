@@ -47,5 +47,3 @@ include $root . "common/header.php";
         </div>
     </div>
 </div>
-
-<?php include $root . "common/footer.php"; ?>

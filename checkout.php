@@ -94,7 +94,9 @@ while ($row = $order->fetch_assoc()) {
                                         <div class="col-lg-3 col-sm-6 px-3">
                                             <div>
                                                 <label class="card-radio-label">
-                                                    <input type="radio" name="pay-method" id="pay-methodoption3" class="card-radio-input" checked="">
+                                                    <input type="radio" name="pay-method" id="pay-methodoption3" 
+                                                    value="Cash on Delivery"
+                                                    class="card-radio-input" checked>
                                                     <div class="text-center">
                                                         <span class="card-radio py-3 text-center text-truncate">
                                                             <h5><i class="fa-solid fa-money-bill"></i></h5>
