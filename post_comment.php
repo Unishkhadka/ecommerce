@@ -3,7 +3,6 @@ $root = "C:/xampp/htdocs/ecommerce/";
 include $root . "common/connection.php";
 $Uid = $_SESSION['Uid'];
 $product_id = $_POST['product_id'];
-var_dump($_POST);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $comment = $_POST['comment'];

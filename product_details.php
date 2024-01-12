@@ -134,20 +134,20 @@ $id = $_GET['id'];
     <form action='/ecommerce/post_comment.php' method='post'>
       <div class='mb-3'>
         <label for='exampleFormControlTextarea1' class='form-label'>
-          <h5>Comment:</h5>
+          <h5>Review:</h5>
         </label>
         <textarea class='form-control' name='comment' id='exampleFormControlTextarea1' rows='2'></textarea>
       </div>
       <div class='text-end'>
         <input type='hidden' name='product_id' value='<?php echo $id; ?>'>
-        <button type='submit' name="submit" class='btn btn-primary'>Comment</button>
+        <button type='submit' name="submit" class='btn btn-primary'>Add Review</button>
       </div>
     </form>
   </div>
 
   <div class="container mb-4">
     <hr>
-    <h4 class="pb-2">Comments</h4>
+    <h4 class="pb-2">Reviews</h4>
     <?php
     $sql = "SELECT * FROM reviews WHERE product_id = $id";
     $comments = $con->query($sql);
@@ -181,7 +181,7 @@ $id = $_GET['id'];
         $Uid = $_SESSION['Uid'];
         if ($Uid == $user_id) {
           echo "
-                    <a href='/Blog_php/delete_comment.php?id=$review_id&&blog_id=$id' class='link-grey'>Delete<i class='fa-solid fa-trash'></i></a> •
+                    <a href='/ecommerce/delete_review.php?id=$review_id && product_id=$id' class='link-grey'>Delete <i class='fa-solid fa-trash'></i></a>-  
                     <!-- Button trigger modal -->
                     <a type='button' class='link-grey' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>
                         Edit <i class='fa-solid fa-pen-to-square'></i>
@@ -196,15 +196,15 @@ $id = $_GET['id'];
                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                 </div>
                                 <div class='modal-body'>
-                                    <form action='/Blog_php/update_comment.php' method='post'>
+                                    <form action='/ecommerce/update_review.php' method='post'>
                                         <div class='mb-3'>
                                             <textarea class='form-control' name='comment' id='exampleFormControlTextarea1' rows='2'>$comment</textarea>
                                         </div>
                                         <div class='modal-footer'>
                                             <div class='text-end'>
-                                                <input type='hidden' name='blog_id' value=$id>
-                                                <input type='hidden' name='comment_id' value=$review_id>
-                                                <button type='submit' class='btn btn-primary'>Comment</button>
+                                                <input type='hidden' name='product_id' value=$id>
+                                                <input type='hidden' name='review_id' value=$review_id>
+                                                <button type='submit' class='btn btn-primary'>Update Review</button>
                                             </div>
                                         </div>
                                     </form>
@@ -228,7 +228,7 @@ $id = $_GET['id'];
         }
       }
     } else {
-      echo "<h1>No comments!</h1>
+      echo "<h1>No reviews!</h1>
       <hr>  ";
     }
     ?>
