@@ -24,13 +24,13 @@ To run this application, you need:
 1. Clone the repository to your local machine:
 
     ```bash
-    git clone https://github.com/YourUsername/ECommerce_php.git
+    git clone https://github.com/YourUsername/ecommerce.git
     ```
 
 2. Move into the project directory:
 
     ```bash
-    cd ECommerce_php
+    cd ecommerce
     ```
 
 3. **Database Setup:**
@@ -137,7 +137,7 @@ To run this application, you need:
 
 4. Start your preferred web server, ensuring that it has PHP support.
 
-5. Open the application in your web browser. If you're running it locally, the URL might be something like `http://localhost/ECommerce_php`.
+5. Open the application in your web browser. If you're running it locally, the URL might be something like `http://localhost/ecommerce`.
 
 ## Usage
 
