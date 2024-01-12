@@ -14,12 +14,9 @@
                     $sql = "SELECT * from cart where user_id = $Uid";
                     $cart = $con->query($sql);
                     $num_items = mysqli_num_rows($cart);
-                    $sql = "SELECT * from order_set where user_id = $Uid";
-                    $cart = $con->query($sql);
-                    $num_orders = mysqli_num_rows($cart);
                     echo "
                     <li><a href='/ecommerce/cart.php' class='nav-link px-2 text-white'><i class='fa-solid fa-cart-shopping'></i> ($num_items)</a></li>
-                    <li><a href='/ecommerce/my_order.php' class='nav-link px-2 text-white'>Orders ($num_orders)</a></li>
+                    <li><a href='/ecommerce/my_order.php' class='nav-link px-2 text-white'>My Orders</a></li>
                     <li><a href='#' class='nav-link px-2 text-white disabled'>Logged in as $username</a></li>";
                 }  ?>
 
